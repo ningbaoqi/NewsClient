@@ -1,13 +1,16 @@
 package ningbaoqi.com.newsclient.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
 import ningbaoqi.com.newsclient.R;
+import ningbaoqi.com.newsclient.utils.SharedPreferenceUtils;
 
 /**
  * =========================================
@@ -42,6 +45,31 @@ public class SplashActivity extends AppCompatActivity {
 
     private void startAnimation() {
         AnimationSet animationSet = (AnimationSet) AnimationUtils.loadAnimation(this, R.anim.splash_animation);
+        animationSet.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                jumpNextActivity();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         splashRoot.startAnimation(animationSet);
+    }
+
+    private void jumpNextActivity() {
+        if (SharedPreferenceUtils.getBoolean(this, SharedPreferenceUtils.FIRSTCOMEIN, true)) {
+            startActivity(new Intent(this, GuideActivity.class));
+        } else {
+            startActivity(new Intent(this, HomeActivity.class));
+        }
+        finish();
     }
 }
