@@ -23,7 +23,9 @@
             android:name=".activity.GuideActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SplashStyle"/>
-        <activity android:name=".activity.HomeActivity"/>
+        <activity
+            android:name=".activity.HomeActivity"
+            android:theme="@style/AppTheme.SplashStyle"/>
     </application>
 
 </manifest>
