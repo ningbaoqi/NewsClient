@@ -6,3 +6,5 @@
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/slidingmenu.gif)
 ### 使用RadioGroup实现底部导航
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/radiobutton.gif)
+### 使用ViewPager实现Home内容页面
+![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/content.gif)
