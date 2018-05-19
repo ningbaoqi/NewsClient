@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">新闻客户端</string>
     <string name="guide_btn_text">开始使用</string>
+    <string name="home">主页</string>
+    <string name="news_center">新闻中心</string>
+    <string name="smart_service">智慧服务</string>
+    <string name="gov">政务</string>
+    <string name="settings">设置</string>
 </resources>

@@ -13,4 +13,16 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="RadioButton_Style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">@dimen/dp_3</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:padding">@dimen/dp_5</item>
+        <item name="android:textColor">@drawable/radio_button_text_color</item>
+    </style>
+
 </resources>

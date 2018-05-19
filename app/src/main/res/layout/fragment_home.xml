@@ -5,8 +5,48 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/home_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home fragment"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></android.support.v4.view.ViewPager>
+
+    <RadioGroup
+        android:id="@id/RadioGroup_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/bottom_tab_bg"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@id/RadioButton_home"
+            style="@style/RadioButton_Style"
+            android:drawableTop="@drawable/radio_button_home"
+            android:text="@string/home"/>
+
+        <RadioButton
+            android:id="@id/RadioButton_news"
+            style="@style/RadioButton_Style"
+            android:drawableTop="@drawable/radio_button_news_center"
+            android:text="@string/news_center"/>
+
+        <RadioButton
+            android:id="@id/RadioButton_smarrt"
+            style="@style/RadioButton_Style"
+            android:drawableTop="@drawable/radio_button_smart_service"
+            android:text="@string/smart_service"
+            />
+
+        <RadioButton
+            android:id="@id/RadioButton_gov"
+            style="@style/RadioButton_Style"
+            android:drawableTop="@drawable/radio_button_gov"
+            android:text="@string/gov"/>
+
+        <RadioButton
+            android:id="@id/RadioButton_settings"
+            style="@style/RadioButton_Style"
+            android:drawableTop="@drawable/radio_button_settings"
+            android:text="@string/settings"/>
+    </RadioGroup>
 </LinearLayout>

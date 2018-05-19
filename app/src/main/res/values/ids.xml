@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="RadioGroup_root" type="id">RadioGroup_root</item>
+    <item name="RadioButton_home" type="id">RadioButton_home</item>
+    <item name="RadioButton_news" type="id">RadioButton_news</item>
+    <item name="RadioButton_smarrt" type="id">RadioButton_smart</item>
+    <item name="RadioButton_gov" type="id">RadioButton_gov</item>
+    <item name="RadioButton_settings" type="id">RadioButton_settings</item>
+</resources>
