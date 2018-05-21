@@ -92,7 +92,7 @@ public class NewsPager extends BasePager {
         ((HomeActivity) mActivity).getSlidingMenuFragment().setSlidingMenuData(newsData);
 
         pagers = new ArrayList<>();
-        pagers.add(new NewsMenuDetailPager(mActivity));
+        pagers.add(new NewsMenuDetailPager(mActivity, newsData.data.get(0).children));
         pagers.add(new TopicMenuDetailPager(mActivity));
         pagers.add(new PhotoMenuDetailPager(mActivity));
         pagers.add(new InteractMenuDetailPager(mActivity));
@@ -109,5 +109,6 @@ public class NewsPager extends BasePager {
         mFrameLayoutContent.removeAllViews();
         mFrameLayoutContent.addView(baseMenuDetailPager.mRootView);
         titleText.setText(newsData.data.get(position).title);
+        baseMenuDetailPager.initData();
     }
 }

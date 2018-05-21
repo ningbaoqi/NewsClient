@@ -9,4 +9,5 @@
     <item name="title_text" type="id">title_text</item>
     <item name="title_menu" type="id">title_men</item>
     <item name="framelayout_content" type="id">framelayout_content</item>
+    <item name="menu_detail" type="id">menu_detail</item>
 </resources>

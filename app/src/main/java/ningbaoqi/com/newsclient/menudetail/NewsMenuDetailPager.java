@@ -1,12 +1,17 @@
 package ningbaoqi.com.newsclient.menudetail;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.view.Gravity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import ningbaoqi.com.newsclient.R;
 import ningbaoqi.com.newsclient.base.BaseMenuDetailPager;
+import ningbaoqi.com.newsclient.domiam.NewsData;
+import ningbaoqi.com.newsclient.pager.TabDetailPager;
 
 /**
  * =========================================
@@ -29,18 +34,56 @@ import ningbaoqi.com.newsclient.base.BaseMenuDetailPager;
  */
 
 public class NewsMenuDetailPager extends BaseMenuDetailPager {
+    private ViewPager mViewPager;
+    private ArrayList<TabDetailPager> pagers;
+    private ArrayList<NewsData.NewsTabData> mNewsTabData;//页签数据
 
-    public NewsMenuDetailPager(Activity mActivity) {
+    public NewsMenuDetailPager(Activity mActivity, ArrayList<NewsData.NewsTabData> children) {
         super(mActivity);
+        this.mNewsTabData = children;
     }
 
     @Override
     public View initView() {
-        TextView textView = new TextView(mActivity);
-        textView.setText("菜单详情页 新闻");
-        textView.setTextSize(25);
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.BLACK);
-        return textView;
+        View view = View.inflate(mActivity, R.layout.news_menu_detail, null);
+        mViewPager = view.findViewById(R.id.menu_detail);
+        return view;
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        pagers = new ArrayList<>();
+        for (int i = 0; i < mNewsTabData.size(); i++) {
+            TabDetailPager pager = new TabDetailPager(mActivity ,mNewsTabData.get(i));
+            pagers.add(pager);
+        }
+        mViewPager.setAdapter(new MenuDetailAdapter());
+    }
+
+    class MenuDetailAdapter extends PagerAdapter {
+
+        @Override
+        public int getCount() {
+            return pagers.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            TabDetailPager pager = pagers.get(position);
+            container.addView(pager.mRootView);
+            pager.initData();
+            return pager.mRootView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
     }
 }
