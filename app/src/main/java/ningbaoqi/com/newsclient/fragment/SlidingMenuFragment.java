@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import java.util.ArrayList;
 
 import ningbaoqi.com.newsclient.R;
@@ -56,8 +58,17 @@ public class SlidingMenuFragment extends BaseFragment {
                 currentPosition = position;
                 adapter.notifyDataSetChanged();
                 setCurrentMenuDetailPager(position);
+                toggleSlidingMenu();
             }
         });
+    }
+
+    /**
+     * 切换SlidingMenu状态
+     */
+    private void toggleSlidingMenu() {
+        SlidingMenu slidingMenu = ((HomeActivity) mActivity).getSlidingMenu();
+        slidingMenu.toggle();//slidingmenu切换
     }
 
     /**

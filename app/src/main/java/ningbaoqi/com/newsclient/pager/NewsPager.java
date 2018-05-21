@@ -45,6 +45,7 @@ import ningbaoqi.com.newsclient.menudetail.TopicMenuDetailPager;
 
 public class NewsPager extends BasePager {
     private ArrayList<BaseMenuDetailPager> pagers;//新闻中能够显示的四个详情页
+    private NewsData newsData;
 
     public NewsPager(Activity activity) {
         super(activity);
@@ -52,7 +53,6 @@ public class NewsPager extends BasePager {
 
     @Override
     public void initData() {
-        titleText.setText(mActivity.getResources().getString(R.string.news_title));
         setSlidingMenuEnabled(true);
         getDataFromServer();
     }
@@ -87,7 +87,7 @@ public class NewsPager extends BasePager {
      */
     private void parseData(String result) {
         Gson gson = new Gson();
-        NewsData newsData = gson.fromJson(result, NewsData.class);
+        newsData = gson.fromJson(result, NewsData.class);
         Log.d(GlobalContants.TAG, newsData.toString());
         ((HomeActivity) mActivity).getSlidingMenuFragment().setSlidingMenuData(newsData);
 
@@ -96,6 +96,7 @@ public class NewsPager extends BasePager {
         pagers.add(new TopicMenuDetailPager(mActivity));
         pagers.add(new PhotoMenuDetailPager(mActivity));
         pagers.add(new InteractMenuDetailPager(mActivity));
+        setCurrentMenuDetailPager(0);
     }
 
     /**
@@ -107,5 +108,6 @@ public class NewsPager extends BasePager {
         BaseMenuDetailPager baseMenuDetailPager = pagers.get(position);
         mFrameLayoutContent.removeAllViews();
         mFrameLayoutContent.addView(baseMenuDetailPager.mRootView);
+        titleText.setText(newsData.data.get(position).title);
     }
 }

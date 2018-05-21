@@ -47,6 +47,19 @@ public abstract class BasePager {
         titleText = rootView.findViewById(R.id.title_text);
         titleMenu = rootView.findViewById(R.id.title_menu);
         mFrameLayoutContent = rootView.findViewById(R.id.framelayout_content);
+        titleMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleSlidingMenu();
+            }
+        });
+    }
+
+    /**
+     * 切换slidingmenu状态
+     */
+    private void toggleSlidingMenu() {
+        ((HomeActivity) mActivity).getSlidingMenu().toggle();
     }
 
     public abstract void initData();
