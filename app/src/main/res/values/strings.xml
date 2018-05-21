@@ -16,4 +16,5 @@
     <string name="tianxiangyu_3">田香玉我们在一起吧</string>
     <string name="tianxiangyu_4">如果你要是不同意的话，我只能说一句...</string>
     <string name="qunimade">我去你吗的</string>
+    <string name="net_error">网络连接失败</string>
 </resources>
