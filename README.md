@@ -8,3 +8,5 @@
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/radiobutton.gif)
 ### 使用ViewPager实现Home内容页面
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/content.gif)
+### 设置SlidingMenu布局及业务逻辑
+![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/s1.gif)

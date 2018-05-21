@@ -11,10 +11,18 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
+import java.util.ArrayList;
+
 import ningbaoqi.com.newsclient.R;
+import ningbaoqi.com.newsclient.activity.HomeActivity;
+import ningbaoqi.com.newsclient.base.BaseMenuDetailPager;
 import ningbaoqi.com.newsclient.base.BasePager;
 import ningbaoqi.com.newsclient.domiam.NewsData;
 import ningbaoqi.com.newsclient.global.GlobalContants;
+import ningbaoqi.com.newsclient.menudetail.InteractMenuDetailPager;
+import ningbaoqi.com.newsclient.menudetail.NewsMenuDetailPager;
+import ningbaoqi.com.newsclient.menudetail.PhotoMenuDetailPager;
+import ningbaoqi.com.newsclient.menudetail.TopicMenuDetailPager;
 
 /**
  * =========================================
@@ -36,6 +44,8 @@ import ningbaoqi.com.newsclient.global.GlobalContants;
  */
 
 public class NewsPager extends BasePager {
+    private ArrayList<BaseMenuDetailPager> pagers;//新闻中能够显示的四个详情页
+
     public NewsPager(Activity activity) {
         super(activity);
     }
@@ -79,5 +89,23 @@ public class NewsPager extends BasePager {
         Gson gson = new Gson();
         NewsData newsData = gson.fromJson(result, NewsData.class);
         Log.d(GlobalContants.TAG, newsData.toString());
+        ((HomeActivity) mActivity).getSlidingMenuFragment().setSlidingMenuData(newsData);
+
+        pagers = new ArrayList<>();
+        pagers.add(new NewsMenuDetailPager(mActivity));
+        pagers.add(new TopicMenuDetailPager(mActivity));
+        pagers.add(new PhotoMenuDetailPager(mActivity));
+        pagers.add(new InteractMenuDetailPager(mActivity));
+    }
+
+    /**
+     * 设置当前菜单详情页
+     *
+     * @param position 当前页面的位置
+     */
+    public void setCurrentMenuDetailPager(int position) {
+        BaseMenuDetailPager baseMenuDetailPager = pagers.get(position);
+        mFrameLayoutContent.removeAllViews();
+        mFrameLayoutContent.addView(baseMenuDetailPager.mRootView);
     }
 }

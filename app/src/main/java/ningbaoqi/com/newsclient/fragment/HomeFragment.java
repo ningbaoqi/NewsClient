@@ -128,5 +128,9 @@ public class HomeFragment extends BaseFragment {
             container.removeView((View) object);
         }
     }
+
+    public NewsPager getNewsPager() {
+        return (NewsPager) pagers.get(1);
+    }
 }
 

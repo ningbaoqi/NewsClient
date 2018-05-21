@@ -58,4 +58,16 @@ public class HomeActivity extends SlidingFragmentActivity {
         slidingMenu.setMode(SlidingMenu.LEFT);//设置SlidingMenu的模式
         slidingMenu.setBehindOffset(700);//设置剩余的宽度
     }
+
+    public SlidingMenuFragment getSlidingMenuFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        SlidingMenuFragment slidingMenuFragment = (SlidingMenuFragment) fragmentManager.findFragmentByTag(SLIDINGMENUTAG);
+        return slidingMenuFragment;
+    }
+
+    public HomeFragment getHomeFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        HomeFragment homeFragment = (HomeFragment) fragmentManager.findFragmentByTag(HOMEFRAGMENTTAG);
+        return homeFragment;
+    }
 }
