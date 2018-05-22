@@ -5,11 +5,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ningbaoqi.com.newsclient.view.TopNewsViewPager
-        android:id="@+id/vp_news"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_180"
-        />
+        android:layout_height="@dimen/dp_180">
+
+        <ningbaoqi.com.newsclient.view.TopNewsViewPager
+            android:id="@+id/vp_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray"
+            android:padding="@dimen/dp_5">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
 
     <ListView
         android:id="@+id/lv_list"
