@@ -5,6 +5,9 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 
@@ -33,10 +36,12 @@ import ningbaoqi.com.newsclient.pager.TabDetailPager;
  * 菜单详情页 新闻
  */
 
-public class NewsMenuDetailPager extends BaseMenuDetailPager {
+public class NewsMenuDetailPager extends BaseMenuDetailPager implements View.OnClickListener {
     private ViewPager mViewPager;
     private ArrayList<TabDetailPager> pagers;
     private ArrayList<NewsData.NewsTabData> mNewsTabData;//页签数据
+    private TabPageIndicator indicator;
+    private ImageButton next;
 
     public NewsMenuDetailPager(Activity mActivity, ArrayList<NewsData.NewsTabData> children) {
         super(mActivity);
@@ -47,6 +52,9 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager {
     public View initView() {
         View view = View.inflate(mActivity, R.layout.news_menu_detail, null);
         mViewPager = view.findViewById(R.id.menu_detail);
+        indicator = view.findViewById(R.id.indicator);
+        next = view.findViewById(R.id.next);
+        next.setOnClickListener(this);
         return view;
     }
 
@@ -55,10 +63,17 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager {
         super.initData();
         pagers = new ArrayList<>();
         for (int i = 0; i < mNewsTabData.size(); i++) {
-            TabDetailPager pager = new TabDetailPager(mActivity ,mNewsTabData.get(i));
+            TabDetailPager pager = new TabDetailPager(mActivity, mNewsTabData.get(i));
             pagers.add(pager);
         }
         mViewPager.setAdapter(new MenuDetailAdapter());
+        indicator.setViewPager(mViewPager);//必须在ViewPager设置完adapter后才能调用
+    }
+
+    @Override
+    public void onClick(View v) {
+        int currentItem = mViewPager.getCurrentItem();
+        mViewPager.setCurrentItem(++currentItem);
     }
 
     class MenuDetailAdapter extends PagerAdapter {
@@ -84,6 +99,11 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mNewsTabData.get(position).title;
         }
     }
 }

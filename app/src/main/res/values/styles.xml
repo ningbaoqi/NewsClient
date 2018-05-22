@@ -13,6 +13,12 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="AppTheme.HomeStyle">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+    </style>
+
     <style name="RadioButton_Style">
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">wrap_content</item>

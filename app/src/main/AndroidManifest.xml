@@ -28,7 +28,7 @@
             android:theme="@style/AppTheme.SplashStyle"/>
         <activity
             android:name=".activity.HomeActivity"
-            android:theme="@style/AppTheme.SplashStyle"/>
+            android:theme="@style/AppTheme.HomeStyle"/>
     </application>
 
 </manifest>
