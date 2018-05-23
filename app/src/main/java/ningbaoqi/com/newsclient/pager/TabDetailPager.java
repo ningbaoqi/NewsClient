@@ -17,6 +17,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 
@@ -53,6 +54,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     private ViewPager viewPager;
     private TextView tvTitle;
     private ArrayList<TabData.TopNewsData> topnews;
+    private CirclePageIndicator circlePageIndicator;
 
     public TabDetailPager(Activity mActivity, NewsData.NewsTabData newsTabData) {
         super(mActivity);
@@ -65,7 +67,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
         View view = View.inflate(mActivity, R.layout.tab_detail_pager, null);
         tvTitle = view.findViewById(R.id.tv_title);
         viewPager = view.findViewById(R.id.vp_news);
-        viewPager.setOnPageChangeListener(this);
+        circlePageIndicator = view.findViewById(R.id.circleIndicator);
         return view;
     }
 
@@ -99,6 +101,10 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
         tvTitle.setText(topnews.get(0).title);
         Log.d(GlobalContants.TAG, tabData.toString());
         viewPager.setAdapter(new TopNewsAdapter());
+        circlePageIndicator.setViewPager(viewPager);
+        circlePageIndicator.setSnap(true);
+        circlePageIndicator.setOnPageChangeListener(this);
+        circlePageIndicator.onPageSelected(0);//让指示器重新定位到第一个点
     }
 
     @Override
