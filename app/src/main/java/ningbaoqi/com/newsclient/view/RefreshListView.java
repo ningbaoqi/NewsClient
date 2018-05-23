@@ -1,12 +1,14 @@
 package ningbaoqi.com.newsclient.view;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -37,7 +39,7 @@ import ningbaoqi.com.newsclient.R;
  * 下拉刷新ListView
  */
 
-public class RefreshListView extends ListView implements AbsListView.OnScrollListener {
+public class RefreshListView extends ListView implements AbsListView.OnScrollListener, AdapterView.OnItemClickListener {
     private static final int STATE_PULL_REFRESH = 0;//下拉刷新
     private static final int STATE_EALEASE_REFRESH = 1;//松开刷新
     private static final int STATE_REFRESHING = 2;//正在刷新
@@ -209,6 +211,7 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
 
     }
 
+
     public interface OnRefreshListener {
         void onRefresh();
 
@@ -240,5 +243,25 @@ public class RefreshListView extends ListView implements AbsListView.OnScrollLis
     public String getCurrentTime() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//H大写是24进制，h小写是12进制；MM表示一月份从1开始，小写表示一月份从0开始
         return simpleDateFormat.format(new Date());
+    }
+
+    OnItemClickListener itemClickListener;
+
+    /**
+     * 重写该方法
+     *
+     * @param listener
+     */
+    @Override
+    public void setOnItemClickListener(@Nullable OnItemClickListener listener) {
+        super.setOnItemClickListener(this);//将自身传递给系统底层
+        itemClickListener = listener;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {//点击的时候回调该方法
+        if (itemClickListener != null) {
+            itemClickListener.onItemClick(parent, view, position - getHeaderViewsCount(), id);
+        }
     }
 }

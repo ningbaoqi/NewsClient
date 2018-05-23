@@ -1,12 +1,14 @@
 package ningbaoqi.com.newsclient.pager;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ import ningbaoqi.com.newsclient.base.BaseMenuDetailPager;
 import ningbaoqi.com.newsclient.domiam.NewsData;
 import ningbaoqi.com.newsclient.domiam.TabData;
 import ningbaoqi.com.newsclient.global.GlobalContants;
+import ningbaoqi.com.newsclient.utils.SharedPreferenceUtils;
 import ningbaoqi.com.newsclient.view.RefreshListView;
 
 /**
@@ -62,6 +65,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     private ArrayList<TabData.TabNewsData> mNewsList;
     private String mMoreUrl;//更多页面的地址
     private NewsAdapter adapter;
+    private String ids = "";
 
     public TabDetailPager(Activity mActivity, NewsData.NewsTabData newsTabData) {
         super(mActivity);
@@ -94,7 +98,28 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
                 }
             }
         });
+        lv_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(GlobalContants.TAG, position + "");
+                String mId = mNewsList.get(position).id;
+                ids = SharedPreferenceUtils.getString(mActivity, SharedPreferenceUtils.READIDS, "");
+                if (!ids.contains(mId)) {
+                    ids += mId + ",";
+                    SharedPreferenceUtils.setString(mActivity, SharedPreferenceUtils.READIDS, ids);
+                }
+                changeReadState(view);
+            }
+        });
         return view;
+    }
+
+    /**
+     * 专门改变已读颜色
+     */
+    private void changeReadState(View view) {
+        TextView tvitle = view.findViewById(R.id.tv_title);
+        tvitle.setTextColor(Color.GRAY);
     }
 
     @Override
@@ -268,6 +293,11 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
             viewHolder.tv_title.setText(item.title);
             viewHolder.tv_date.setText(item.pubdate);
             bitmapUtils.display(viewHolder.iv_pic, item.listimage);//加载图片
+            if (ids.contains(getItem(position).id)) {
+                viewHolder.tv_title.setTextColor(Color.GRAY);
+            } else {
+                viewHolder.tv_title.setTextColor(Color.BLACK);
+            }
             return convertView;
         }
     }
