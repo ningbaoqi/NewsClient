@@ -32,6 +32,7 @@ import ningbaoqi.com.newsclient.base.BaseMenuDetailPager;
 import ningbaoqi.com.newsclient.domiam.NewsData;
 import ningbaoqi.com.newsclient.domiam.TabData;
 import ningbaoqi.com.newsclient.global.GlobalContants;
+import ningbaoqi.com.newsclient.utils.CacheUtils;
 import ningbaoqi.com.newsclient.utils.SharedPreferenceUtils;
 import ningbaoqi.com.newsclient.view.RefreshListView;
 
@@ -130,6 +131,10 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     @Override
     public void initData() {
         super.initData();
+        String cache = CacheUtils.getCache(url, mActivity);
+        if (!TextUtils.isEmpty(cache)) {
+            parseData(cache, false);
+        }
         getDataFromServer();
     }
 
@@ -141,6 +146,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
                 String result = responseInfo.result;
                 parseData(result, false);
                 lv_list.onRefreshComplete(true);
+                CacheUtils.setCache(url, result, mActivity);
             }
 
             @Override

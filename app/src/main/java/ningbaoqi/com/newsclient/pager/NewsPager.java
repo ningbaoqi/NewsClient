@@ -1,6 +1,7 @@
 package ningbaoqi.com.newsclient.pager;
 
 import android.app.Activity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import ningbaoqi.com.newsclient.menudetail.InteractMenuDetailPager;
 import ningbaoqi.com.newsclient.menudetail.NewsMenuDetailPager;
 import ningbaoqi.com.newsclient.menudetail.PhotoMenuDetailPager;
 import ningbaoqi.com.newsclient.menudetail.TopicMenuDetailPager;
+import ningbaoqi.com.newsclient.utils.CacheUtils;
 
 /**
  * =========================================
@@ -54,7 +56,11 @@ public class NewsPager extends BasePager {
     @Override
     public void initData() {
         setSlidingMenuEnabled(true);
-        getDataFromServer();
+        String cache = CacheUtils.getCache(GlobalContants.CATAGORY_URL, mActivity);
+        if (!TextUtils.isEmpty(cache)) {
+            parseData(cache);//如果缓存存在直接解析数据
+        }
+        getDataFromServer();//为了避免服务器更新数据了，还是需要获取最新数据
     }
 
     /**
@@ -69,6 +75,7 @@ public class NewsPager extends BasePager {
                 String result = responseInfo.result;
                 Log.d(GlobalContants.TAG, result);
                 parseData(result);
+                CacheUtils.setCache(GlobalContants.CATAGORY_URL, result, mActivity);//设置缓存
             }
 
             @Override
