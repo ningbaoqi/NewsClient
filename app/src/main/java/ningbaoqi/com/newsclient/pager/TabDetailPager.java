@@ -3,10 +3,13 @@ package ningbaoqi.com.newsclient.pager;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -69,6 +72,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     private String mMoreUrl;//更多页面的地址
     private NewsAdapter adapter;
     private String ids = "";
+    private Handler handler;
 
     public TabDetailPager(Activity mActivity, NewsData.NewsTabData newsTabData) {
         super(mActivity);
@@ -187,6 +191,22 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
                 adapter = new NewsAdapter();
                 lv_list.setAdapter(adapter);
             }
+            if (handler == null) {
+                handler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        int currentItem = viewPager.getCurrentItem();
+                        if (currentItem < topnews.size() - 1) {
+                            currentItem++;
+                        } else {
+                            currentItem = 0;
+                        }
+                        viewPager.setCurrentItem(currentItem);
+                        handler.sendEmptyMessageDelayed(0x123, 3000);
+                    }
+                };
+                handler.sendEmptyMessageDelayed(0x123, 3000);
+            }
         } else {//如果是加载下一页，需要将数据追加给原来的集合中
             ArrayList<TabData.TabNewsData> news = tabData.data.news;
             mNewsList.addAll(news);
@@ -254,12 +274,33 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
             TabData.TopNewsData topNewsData = topnews.get(position);
             bitmapUtils.display(imageView, topNewsData.topimage);
             container.addView(imageView);
+            imageView.setOnTouchListener(new TopNewsTouchListener());
             return imageView;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
+        }
+    }
+
+    class TopNewsTouchListener implements View.OnTouchListener {
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    handler.removeCallbacksAndMessages(null);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    handler.sendEmptyMessageDelayed(0x123, 3000);
+                    break;
+                case MotionEvent.ACTION_CANCEL://事件被取消时走这个
+                    handler.sendEmptyMessageDelayed(0x123, 3000);
+                default:
+                    break;
+            }
+            return true;
         }
     }
 
