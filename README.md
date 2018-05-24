@@ -14,3 +14,5 @@
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/a2.gif)
 ### 使用WebView实现新闻详情页面
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/v1.gif)
+### 使用第三方平台ShardSDK实现分享功能
+![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/s2.gif)

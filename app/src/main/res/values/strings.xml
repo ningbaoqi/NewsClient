@@ -22,4 +22,5 @@
     <string name="release_refersh">松开刷新</string>
     <string name="refreshing">正在刷新...</string>
     <string name="textsize_settings">字体设置</string>
+    <string name="share">分享</string>
 </resources>
