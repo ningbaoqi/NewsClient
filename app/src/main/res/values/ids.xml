@@ -15,4 +15,5 @@
     <item name="btn_share" type="id"/>
     <item name="btn_size" type="id"/>
     <item name="wv_web" type="id"/>
+    <item name="btn_phone" type="id"/>
 </resources>

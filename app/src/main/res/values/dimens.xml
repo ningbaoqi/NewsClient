@@ -26,4 +26,9 @@
     <dimen name="dp_35">35dp</dimen>
     <dimen name="dp_2">2dp</dimen>
     <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_500">500dp</dimen>
+    <dimen name="dp_400">400dp</dimen>
+    <dimen name="dp_300">300dp</dimen>
+    <dimen name="dp_350">350dp</dimen>
+    <dimen name="dp_160">160dp</dimen>
 </resources>

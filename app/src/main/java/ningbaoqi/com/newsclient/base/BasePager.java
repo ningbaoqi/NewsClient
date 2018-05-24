@@ -36,6 +36,7 @@ public abstract class BasePager {
     protected ImageButton titleMenu;
     protected View rootView;
     protected FrameLayout mFrameLayoutContent;
+    protected ImageButton titlePhoto;
 
     public BasePager(Activity activity) {
         this.mActivity = activity;
@@ -46,6 +47,7 @@ public abstract class BasePager {
         rootView = View.inflate(mActivity, R.layout.base_pager_content, null);
         titleText = rootView.findViewById(R.id.title_text);
         titleMenu = rootView.findViewById(R.id.title_menu);
+        titlePhoto = rootView.findViewById(R.id.btn_phone);
         mFrameLayoutContent = rootView.findViewById(R.id.framelayout_content);
         titleMenu.setOnClickListener(new View.OnClickListener() {
             @Override

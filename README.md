@@ -16,3 +16,5 @@
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/v1.gif)
 ### 使用第三方平台ShardSDK实现分享功能
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/s2.gif)
+### 添加组图功能
+![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/b.gif)

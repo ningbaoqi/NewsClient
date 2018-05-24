@@ -24,4 +24,5 @@ public class GlobalContants {
     public static final String TAG = "nbq";
     public static final String SERVER_URL = "http://192.168.1.32:8080/zhbj";
     public static final String CATAGORY_URL = SERVER_URL + "/categories.json";//获取分类信息
+    public static final String PHOTOS_URL = SERVER_URL + "/photos/photos_1.json";//组图接口
 }

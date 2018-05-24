@@ -3,6 +3,7 @@ package ningbaoqi.com.newsclient.pager;
 import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -101,7 +102,7 @@ public class NewsPager extends BasePager {
         pagers = new ArrayList<>();
         pagers.add(new NewsMenuDetailPager(mActivity, newsData.data.get(0).children));
         pagers.add(new TopicMenuDetailPager(mActivity));
-        pagers.add(new PhotoMenuDetailPager(mActivity));
+        pagers.add(new PhotoMenuDetailPager(mActivity , titlePhoto));
         pagers.add(new InteractMenuDetailPager(mActivity));
         setCurrentMenuDetailPager(0);
     }
@@ -117,5 +118,10 @@ public class NewsPager extends BasePager {
         mFrameLayoutContent.addView(baseMenuDetailPager.mRootView);
         titleText.setText(newsData.data.get(position).title);
         baseMenuDetailPager.initData();
+        if (baseMenuDetailPager instanceof PhotoMenuDetailPager) {
+            titlePhoto.setVisibility(View.VISIBLE);
+        } else {
+            titlePhoto.setVisibility(View.GONE);
+        }
     }
 }
