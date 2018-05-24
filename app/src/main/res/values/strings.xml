@@ -21,4 +21,5 @@
     <string name="pull_refresh">下拉刷新</string>
     <string name="release_refersh">松开刷新</string>
     <string name="refreshing">正在刷新...</string>
+    <string name="textsize_settings">字体设置</string>
 </resources>

@@ -1,6 +1,7 @@
 package ningbaoqi.com.newsclient.pager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,6 +27,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 import java.util.ArrayList;
 
 import ningbaoqi.com.newsclient.R;
+import ningbaoqi.com.newsclient.activity.NewsDetailActivity;
 import ningbaoqi.com.newsclient.base.BaseMenuDetailPager;
 import ningbaoqi.com.newsclient.domiam.NewsData;
 import ningbaoqi.com.newsclient.domiam.TabData;
@@ -109,6 +111,9 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
                     SharedPreferenceUtils.setString(mActivity, SharedPreferenceUtils.READIDS, ids);
                 }
                 changeReadState(view);
+                Intent intent = new Intent(mActivity, NewsDetailActivity.class);
+                intent.putExtra("url", mNewsList.get(position).url);
+                mActivity.startActivity(intent);
             }
         });
         return view;

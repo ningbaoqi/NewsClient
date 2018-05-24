@@ -12,3 +12,5 @@
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/s1.gif)
 ### 使用ViewPagerIndicator实现滑动条
 ![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/a2.gif)
+### 使用WebView实现新闻详情页面
+![image](https://github.com/ningbaoqi/NewsClient/blob/master/gif/v1.gif)

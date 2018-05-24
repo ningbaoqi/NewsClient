@@ -10,4 +10,9 @@
     <item name="title_menu" type="id">title_men</item>
     <item name="framelayout_content" type="id">framelayout_content</item>
     <item name="menu_detail" type="id">menu_detail</item>
+    <item name="title_back" type="id"/>
+    <item name="btn_back" type="id"/>
+    <item name="btn_share" type="id"/>
+    <item name="btn_size" type="id"/>
+    <item name="wv_web" type="id"/>
 </resources>

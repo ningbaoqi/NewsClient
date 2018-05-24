@@ -28,7 +28,12 @@
             android:theme="@style/AppTheme.SplashStyle"/>
         <activity
             android:name=".activity.HomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.HomeStyle"/>
+        <activity
+            android:name=".activity.NewsDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.SplashStyle"
+            />
     </application>
-
 </manifest>
