@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -27,6 +26,7 @@ import ningbaoqi.com.newsclient.base.BaseMenuDetailPager;
 import ningbaoqi.com.newsclient.domiam.PhotoData;
 import ningbaoqi.com.newsclient.global.GlobalContants;
 import ningbaoqi.com.newsclient.utils.CacheUtils;
+import ningbaoqi.com.newsclient.utils.bitmap.MyBitmapUtils;
 
 /**
  * =========================================
@@ -97,7 +97,7 @@ public class PhotoMenuDetailPager extends BaseMenuDetailPager {
         super.initData();
         String cache = CacheUtils.getCache(GlobalContants.PHOTOS_URL, mActivity);
         if (!TextUtils.isEmpty(cache)) {
-
+            parseData(cache);
         }
         getDataFromServer();
     }
@@ -132,12 +132,13 @@ public class PhotoMenuDetailPager extends BaseMenuDetailPager {
     }
 
     class PhotoAdapter extends BaseAdapter {
-
-        private final BitmapUtils utils;
+        private MyBitmapUtils myBitmapUtils;
+        //private final BitmapUtils utils;
 
         public PhotoAdapter() {
-            utils = new BitmapUtils(mActivity);
-            utils.configDefaultLoadingImage(R.drawable.news_pic_default);
+            //utils = new BitmapUtils(mActivity);
+            //utils.configDefaultLoadingImage(R.drawable.news_pic_default);
+            myBitmapUtils = new MyBitmapUtils();
         }
 
         @Override
@@ -170,7 +171,7 @@ public class PhotoMenuDetailPager extends BaseMenuDetailPager {
             }
             PhotoData.PhtotInfo item = getItem(position);
             viewHolder.tvPic.setText(item.title);
-            utils.display(viewHolder.ivPic, item.listimage);
+            myBitmapUtils.display(viewHolder.ivPic, item.listimage);
             return convertView;
         }
     }
